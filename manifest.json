@@ -1,0 +1,27 @@
+{
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "content_scripts": [ {
+      "all_frames": false,
+      "js": [ "options/javascripts/jquery-1.6.4.min.js","contentscript.js" ],
+      "matches": [ "file://*/*", "http://*/*", "https://*/*" ],
+      "run_at": "document_start"
+   } ],
+   "description": "Rename or modify tab/page titles based on user-specified URL patterns.",
+   "icons": {
+      "128": "icon_128.png",
+      "48": "icon_48.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCcw5qb+VXhfQbJ2xKLIcxh+A76rAZ5wtVg43DOrhzRQycbOqu/xZQgcXQjYqYA3HUs0BELlg5+ZtW1hLmOQCCvE5x87xcYgLqWS3QVkdmWNH6RDcDlyYwS6J80K0Ld641Jr0fSvPqaDKRmMK1sQ5CwKTl7ZqOFY/NbtxKSjhApDQIDAQAB",
+   "manifest_version": 2,
+   "name": "Tab Title Tweaker",
+   "options_page": "options/index.html",
+   "page_action": {
+      "default_icon": "icon_128.png",
+      "default_title": "Tab Title Tweaker is active on this page because a rule matched."
+   },
+   "permissions": [ "tabs", "http://*/*", "https://*/*" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "0.0.0.7"
+}

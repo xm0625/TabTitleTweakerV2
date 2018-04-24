@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Tab Title Tweaker: Options</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/skeleton.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+	<link rel="stylesheet" href="stylesheets/custom.css">
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+</head>
+<body>
+
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<!-- Delete everything in this .container and get started on your own site! -->
+
+	<div class="container">
+		<div class="sixteen columns">
+			<h1 style="margin-top: 40px"><img src="images/icon.png"> Tab Title Tweaker</h1>
+			<h5>Options & Help</h5>
+			<hr />
+		</div>
+
+		<ul class="tabs">
+			<!-- Give href an ID value of corresponding "tabs-content" <li>'s -->
+			<li><a class="active" href="#rules">Your Rules</a></li>
+			<li><a href="#instructions">Instructions</a></li>
+			<li><a href="#examples">Examples</a></li>
+		</ul>
+
+		<!-- Standard <ul> with class of "tabs-content" -->
+		<ul class="tabs-content">
+			<!-- Give ID that matches HREF of above anchors -->
+			<li class="active" id="rules">
+				<div id="status-defaults">
+					Loaded default rule to get you started. It won't be active unless you click "Save."<br /><br />
+					Please take some time to read the Instructions and Examples!
+				</div>
+                <textarea id="edit-rules" class="monospaced" name="edit-rules" rows="10" cols="90"></textarea>
+                <button id="save-options">Save</button>
+                <div id="status-success"></div>
+                <div id="status-error"></div>
+			</li>
+			<li id="instructions">
+                <div>
+                    <h4>Syntax (one rule per line):</h4>
+                    <span class="monospaced">operation, pattern, text</span><br /><span class="monospaced">operation, pattern, text</span>
+                </div>
+                <div>
+                    <h4>Operations</h4>
+                    <ul class="indented">
+                        <li><em>rename</em> : completely replace the title with text</li>
+                        <li><em>prefix</em> : add text to the beginning of the page title</li>
+                        <li><em>suffix</em> : add text to the end of the page title</li>
+                        <li><em>revert</em> : reset the title to its original value (for overriding other rules; please see examples)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Tips</h4>
+                    <ul>
+                        <li>Titles may not be altered until the page has finished loading.</li>
+                        <li>The TTT icon will appear in the address bar if Tab Title Tweaker has found matching rules for the page.</li>
+                        <li>Use optional * wildcards in the <em>pattern</em> part of the rule to match <strong>one or more</strong> characters (anything but spaces).<br />See all examples.</li>
+                        <li>If you omit <em>http://</em> or <em>https://</em> then both will match automatically.<br />See example #4 to see how to match only one protocol.</li>
+                        <li><span class="monospaced">mysite.com/mydir</span> is not the same as <span class="monospaced">mysite.com/mydir*</span><br />See example #3.</li>
+                        <li>Rules are actioned in order, so if multiple rules match a page, the lower rule will override the higher one.<br />See example #3.</li>
+                        <li>Because <em>revert</em> rules make sure tab title stays the same (overriding previous rule matches), you probably want to put these rules at the end of the list.</li>
+                        <li>Some sites have javascript-updated page titles (AJAX-powered sites like Gmail, where the tab title may update to show the number of unread emails in your inbox). TTT will change these page titles if rules match, but the customized titles may be replaced by the site's underlying javascript. I may be able to overcome this in future version of TTT.</li>
+                    </ul>
+                </div>
+            </li>
+			<li id="examples">
+                <div class="example">
+                    <h4>Example 1: match subdirectories unless overridden</h4>
+                    <div class="monospaced bold">Rule: prefix, *.devserver.com, DEV</div>
+                    <ul>
+                        <li><span class="monospaced">mysite.devserver.com/mypage</span><br />The tab title changes to "DEV MyPage" (original page title was "MyPage")</li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h4>Example 2: wildcard precision</h4>
+                    <div class="monospaced bold">Rule: rename, *.devserver.com/xyz/*, Foo</div>
+                    <ul>
+                        <li><span class="monospaced">mysite.devserver.com/xyz</span><br />The tab title won't change</li>
+                        <li><span class="monospaced">mysite.devserver.com/xyz/</span><br />The tab title won't change</li>
+                        <li><span class="monospaced">mysite.devserver.com/xyz/mypage</span><br />The tab title changes to "Foo"</li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h4>Example 3: matching a single page + overriding rules</h4>
+                    <div class="monospaced bold">Rule: suffix, devserver.com/xyz/page-x, Foo<br/>Rule: revert, devserver.com/xyz/page-x*</div>
+                    <ul>
+                        <li><span class="monospaced">devserver.com/xyz/page-x</span><br />The tab title changes to "Page X Foo"</li>
+                        <li><span class="monospaced">devserver.com/xyz/page-xyz</span><br />This matches the second rule in the example. Because it's a <em>revert</em> rule, the tab title will won't change.</li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h4>Example 4: matching only http</h4>
+                    <div class="monospaced bold">Rule: rename, http://mysite.com/xyz/page-x, Foo</div>
+                    <ul>
+                        <li><span class="monospaced">http://mysite.com/xyz/page-x</span><br />The tab title changes to "Foo"</li>
+                        <li><span class="monospaced">https://mysite.com/xyz/page-x</span><br />The tab title won't change</li>
+                        <li><em>Changing the rule to include the "s" will give you the opposite effect</em></li>
+                    </ul>
+                </div>
+</li>
+
+	</div><!-- container -->
+
+	<!-- JS
+	================================================== -->
+	<script src="javascripts/jquery-1.6.4.min.js"></script>
+	<script src="javascripts/tabs.js"></script>
+	<script src="javascripts/options.js"></script>
+<!-- End Document
+================================================== -->
+</body>
+</html>
