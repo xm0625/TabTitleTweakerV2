@@ -21,7 +21,7 @@
       "default_icon": "icon_128.png",
       "default_title": "Tab Title Tweaker is active on this page because a rule matched."
    },
-   "permissions": [ "tabs", "http://*/*", "https://*/*" ],
+   "permissions": [ "cookies", "tabs", "http://*/*", "https://*/*" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
    "version": "0.0.0.7"
 }

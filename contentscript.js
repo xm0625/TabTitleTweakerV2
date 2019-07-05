@@ -38,10 +38,23 @@ chrome.extension.sendRequest({method: "get_rules"}, function(response) {
             }
 
             if (operation == "rename") {
+                var iconElement = [];
+                var linkList = document.getElementsByTagName("link");
+                for(var i=0; i<linkList.length; i++){
+                    var link = linkList[i];
+                    if((typeof(link.rel) === "string") && (link.rel.indexOf("icon")>-1)){
+                        iconElement.push(link);
+                    }
+                }
                 document.title = textval;
                 setInterval(function(){
                     if(document.title !== textval){
                         document.title = textval;
+                    }
+                    for(var i=0; i<iconElement.length; i++){
+                        if(iconElement[i].href !== "https://www.baidu.com/favicon.ico"){
+                            iconElement[i].href = "https://www.baidu.com/favicon.ico";
+                        }
                     }
                 }, 200);
             }
